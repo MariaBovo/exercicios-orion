@@ -49,3 +49,31 @@ docker compose up --build -d
 ```
 - API: http://localhost:3000/health
 - Adminer: http://localhost:8080 (Sistema: PostgreSQL, Servidor: `db`, dados do `.env`)
+
+
+## Banco de Dados
+
+Pré-requisito: Docker Desktop instalado e rodando.
+
+Para subir o PostgreSQL e o MongoDB:
+
+```bash
+cd banco-de-dados
+docker compose up -d
+```
+
+### Exercícios 1 e 2 — SQL (PostgreSQL)
+Criação das tabelas `cursos` e `alunos` com chave estrangeira, consultas com JOIN, WHERE, UPDATE e LEFT JOIN.
+
+```bash
+docker compose exec -T db_postgres psql -U orion_user -d orion_db < exercicio-1/exercicio-1.sql
+docker compose exec -T db_postgres psql -U orion_user -d orion_db < exercicio-2/exercicio-2.sql
+```
+
+### Exercícios 3 e 4 — NoSQL (MongoDB)
+Coleção `posts` com schema flexível, `updateOne` com array de documentos e consultas em arrays e documentos aninhados.
+
+```bash
+docker compose exec -T db_mongo mongosh "mongodb://orion_admin:orion_admin_pass@localhost:27017/" --quiet < exercicio-3/exercicio-3.js
+docker compose exec -T db_mongo mongosh "mongodb://orion_admin:orion_admin_pass@localhost:27017/" --quiet < exercicio-4/exercicio-4.js
+```
